@@ -32,9 +32,8 @@ const addDepartment = () => {
       connection.query(
         "INSERT INTO department (department) VALUES (?);",
         [newDept],
-        (err, data) => {
+        (err) => {
           if (err) throw err;
-          console.table(data);
           init();
         }
       );
@@ -141,9 +140,8 @@ const addRole = () => {
         connection.query(
           `INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?);`,
           [roleName, roleSalary, roleDept],
-          (err, data) => {
+          (err) => {
             if (err) throw err;
-            console.log(data);
             init();
           }
         );
