@@ -33,3 +33,17 @@ CREATE TABLE employee (
 SELECT * FROM department;
 SELECT * FROM role;
 SELECT * FROM employee;
+
+SELECT role.id, title, salary, department 
+FROM role
+RIGHT JOIN department ON department_id = department.id;
+
+SELECT employee.id, employee.first_name, employee.last_name, role.title, role.salary, department.department, concat(manager.first_name, " ", manager.last_name) AS manager
+    FROM employee 
+    LEFT JOIN role ON employee.role_id = role.id
+    LEFT JOIN department ON department.id = role.department_id
+	LEFT JOIN employee as manager ON employee.manager_id = manager.id;
+
+UPDATE role
+INNER JOIN employee ON role.id = employee.role_id 
+SET title = "Sales Lead" WHERE employee.first_name = "I.P.";
